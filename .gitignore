@@ -1,0 +1,5 @@
+*.o
+*.dpp
+*.d
+*.a
+mti_i2c_rp5
