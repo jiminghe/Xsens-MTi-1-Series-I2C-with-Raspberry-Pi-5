@@ -10,7 +10,7 @@
 
 void liveDataHandler(const XsDataPacket& packet) {
     // Process the live data packet
-    std::cout << "Received live data packet" << std::endl;
+    //std::cout << "Received live data packet" << std::endl;
 
     if(packet.containsSampleTimeFine())
     {
