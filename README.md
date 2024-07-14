@@ -43,7 +43,7 @@ dtparam=i2c_arm=on, i2c_arm_baudrate=400000
 | -------------- | ------------ |
 | 3V3 power      | 3V3(P101-4)  |
 | Ground         | GND(P101-6)  |
-| GPIO 17        | CTS(P102-4)  |
+| GPIO 17        | DRDY(P102-4)  |
 | GPIO 2(SDA)    | SDA(P100-9)  |
 | GPIO 3(SCL)    | SCL(P100-10) |
 
