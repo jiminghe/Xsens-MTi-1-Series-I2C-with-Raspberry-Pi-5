@@ -3,7 +3,7 @@
 ## Introduction
 This library was tested under `Ubuntu 24.04 LTS` with `Raspberry Pi 5` with `MTi-3-DK`. 
 
-The `WiringPi` was only used to configure the DRDY pin, while the [Linux I2C](https://github.com/torvalds/linux/blob/master/include/uapi/linux/i2c-dev.h) library was used to read/write the I2C data. 
+The `WiringPi` was only used to configure the DRDY and RESET pin, while the [Linux I2C](https://github.com/torvalds/linux/blob/master/include/uapi/linux/i2c-dev.h) library was used to read/write the I2C data. 
 
 The `xbus` and `mtinterface` are from the embedded example code from the Xsens MT SDK 2022.0, which were slightly adapted to work with Linux I2C library. And the `xstypes` library is from the Xsens MT SDK 2022.0, which is used to parse the data.
 
