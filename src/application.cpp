@@ -60,6 +60,8 @@ Application::Application(MtsspDriver* driver)
 	m_device = new MtsspInterface(m_driver);
 	wiringPiSetupGpio(); // Initialize wiringPi using GPIO numbering
     pinMode(DATA_READY_PIN, INPUT); // Set DRDY_PIN as input
+	pinMode(RESET_PIN, OUTPUT); // Set RESET_PIN as output
+	digitalWrite(RESET_PIN, LOW); // Set RESET_PIN as low
 }
 
 
@@ -104,6 +106,8 @@ void Application::handleEvent(Event event, const uint8_t* data)
 			{
 				cout<< "Resetting the device" << endl;
 				resetDevice();
+				m_driver->initialize();
+				delay(500); //Delay 500ms to make sure initialize is done.
 				m_state = STATE_WaitForWakeUp;
 			}
 		} break;
@@ -262,12 +266,12 @@ void Application::handleEvent(Event event, const uint8_t* data)
 */
 void Application::resetDevice()
 {
-	//Software reset: FA FF 40 00 C1
-	// cout << "Application::resetDevice sending reset message 40 00 C1" <<endl;
-	Xbus_message(m_xbusTxBuffer, 0xFF, XMID_Reset, 0);
-	m_device->sendXbusMessage(m_xbusTxBuffer);
+    // Drive the pin high to reset the sensor
+    digitalWrite(RESET_PIN, HIGH);
+    delay(1000); // Wait for 1000 milliseconds to ensure the reset is registered
+    // Drive the pin low again
+    digitalWrite(RESET_PIN, LOW);
 }
-
 
 /*!	\brief Read data from the Notification and Control pipes of the device
 */

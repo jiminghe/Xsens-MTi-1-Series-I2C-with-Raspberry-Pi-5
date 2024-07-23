@@ -49,9 +49,12 @@ class MtsspDriverI2c : public MtsspDriver
 
 		virtual XbusBusFormat busFormat() const { return XBF_I2c; }
 
+		void initialize();
+
 	private:
 		uint16_t m_deviceAddress;
 		int m_i2c_fd;
+		const char* m_i2c_device_name;
 };
 
 

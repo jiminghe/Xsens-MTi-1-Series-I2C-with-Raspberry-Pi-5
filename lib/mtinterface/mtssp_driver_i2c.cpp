@@ -52,24 +52,9 @@ using namespace std;
 	\param[in] deviceAddress The 7 bit I2C address of the MTi
 */
 MtsspDriverI2c::MtsspDriverI2c(uint8_t deviceAddress,  const char* i2c_device_name)
-	: m_deviceAddress(deviceAddress)
+	: m_deviceAddress(deviceAddress), m_i2c_device_name(i2c_device_name)
 {
-	m_i2c_fd = open(i2c_device_name, O_RDWR);
-    if (m_i2c_fd < 0) {
-        std::cerr << "Failed to open I2C device" << std::endl;
-    }
-
-    // Set the I2C slave address
-    if (ioctl(m_i2c_fd, I2C_SLAVE, deviceAddress) < 0) {
-        std::cerr << "Failed to set I2C slave address" << std::endl;
-        close(m_i2c_fd);
-    }
-	else
-	{
-		cout << "MtsspDriverI2c initialize I2C device ok" << endl;
-	}
-
-	
+	// initialize();
 }
 
 
@@ -78,6 +63,24 @@ MtsspDriverI2c::~MtsspDriverI2c() {
         close(m_i2c_fd);
     }
 }
+
+void MtsspDriverI2c::initialize() {
+	m_i2c_fd = open(m_i2c_device_name, O_RDWR);
+    if (m_i2c_fd < 0) {
+        std::cerr << "Failed to open I2C device" << std::endl;
+    }
+
+    // Set the I2C slave address
+    if (ioctl(m_i2c_fd, I2C_SLAVE, m_deviceAddress) < 0) {
+        std::cerr << "Failed to set I2C slave address" << std::endl;
+        close(m_i2c_fd);
+    }
+	else
+	{
+		cout << "MtsspDriverI2c initialize I2C device ok" << endl;
+	}
+}
+
 
 
 /*!	\brief Perform a blocking write transfer on the I2C bus

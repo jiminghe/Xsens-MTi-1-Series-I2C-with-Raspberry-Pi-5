@@ -39,6 +39,7 @@
 #include <functional>
 
 #define DATA_READY_PIN				17 // GPIO17 for DRDY line
+#define RESET_PIN 					27 //GPIO27 for Reset line
 
 class MtsspDriver;
 class MtsspInterface;

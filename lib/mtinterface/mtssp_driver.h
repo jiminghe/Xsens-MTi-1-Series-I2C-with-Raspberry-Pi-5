@@ -70,6 +70,9 @@ public:
 	/*!	\brief Returns the low level bus format that must be used for transmitting messages over this hardware bus
 	*/
 	virtual XbusBusFormat busFormat() const = 0;
+
+    // Initialize the I2C device
+	virtual void initialize() = 0;  
 };
 
 
