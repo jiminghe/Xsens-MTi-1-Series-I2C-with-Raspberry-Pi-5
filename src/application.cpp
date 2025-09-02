@@ -262,15 +262,22 @@ void Application::handleEvent(Event event, const uint8_t* data)
 }
 
 
-/*!	\brief Resets the MTi
+/*!	\brief Resets the MTi using edge-triggered reset mechanism
+	The nRST pin is active low and uses edge-triggered reset.
+	A high-to-low transition triggers the internal reset sequence.
+	Once reset is complete, the device resumes normal operation 
+	regardless of the pin state.
 */
 void Application::resetDevice()
 {
-    // Drive the pin high to reset the sensor
+    // Ensure pin is high before triggering reset (establish initial state)
     digitalWrite(RESET_PIN, HIGH);
-    delay(1000); // Wait for 1000 milliseconds to ensure the reset is registered
-    // Drive the pin low again
+    delay(1);  // Brief delay to ensure pin state is stable
+    
+    // Drive the pin low again to generate falling edge to trigger reset (high-to-low transition)
     digitalWrite(RESET_PIN, LOW);
+    
+    // Pin remains low after reset
 }
 
 /*!	\brief Read data from the Notification and Control pipes of the device
