@@ -45,7 +45,7 @@ dtparam=i2c_arm=on, i2c_arm_baudrate=400000
 | Ground         | GND(P101-6)  |
 | GPIO 2(SDA)    | SDA(P100-9)  |
 | GPIO 3(SCL)    | SCL(P100-10) |
-| GPIO 17        | CTS(P102-4)  |
+| GPIO 17        | DRDY(P102-4)  |
 | GPIO 27        | RESET(P102-5) |
 
 refer to [MTi 1-series DK User Manual](https://mtidocs.movella.com/shield-board) and Raspberry-Pi [GPIO and the 40-pin header](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#gpio)
